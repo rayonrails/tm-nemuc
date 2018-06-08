@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const session = require('express-session');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -12,6 +13,9 @@ const app = express();
 // Load Routes
 const ideas = require('./routes/ideas');
 const users = require('./routes/users');
+
+// Passport COnfig
+require('./config/passport')(passport);
 
 // Connect to mongoose
 mongoose.connect('mongodb://vidjot-user:rainman2002@ds245150.mlab.com:45150/vidjot-prod')
