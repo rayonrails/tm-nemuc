@@ -21,11 +21,18 @@ router.get('/register', (req,res) => {
 // Login Form from POST
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    succssRedirect: '/ideas',
+    successRedirect: '/ideas',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
 });
+
+// Logout
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('/users/login');
+})
 
 // Register Form POST
 router.post('/register', (req, res) => {
